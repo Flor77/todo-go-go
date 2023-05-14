@@ -35,7 +35,7 @@ function Todos() {
         {selectedProject === "next 7 days" ? (
           <Next7Days todos={todos} />
         ) : (
-          todos.map((todo) => <Todo todo={todo} key={todo.key} />)
+          todos.map((todo) => <Todo todo={todo} key={todo.id} />)
         )}
       </div>
     </div>
