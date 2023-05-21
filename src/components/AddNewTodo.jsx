@@ -2,9 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "./Modal";
 import TodoForm from "./TodoForm";
 import { TodoContext } from "../context";
+import { calendarItems } from "../constants";
+import moment from "moment";
+import randomcolor from "randomcolor";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const AddNewTodo = () => {
-  const { selectedProject } = useContext(TodoContext);
+  const { projects, selectedProject } = useContext(TodoContext);
 
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState("");
@@ -12,13 +17,24 @@ const AddNewTodo = () => {
   const [time, setTime] = useState();
   const [todoProject, setTodoProject] = useState(selectedProject);
 
-  const projects = [
-    { id: 1, name: "personal", numOfTodos: 0 },
-    { id: 2, name: "work", numOfTodos: 1 },
-    { id: 3, name: "other", numOfTodos: 2 },
-  ];
-
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (text && !calendarItems.includes(todoProject)) {
+      addDoc(collection(db, "todos"), {
+        text: text,
+        date: moment(day).format("MM/DD/YYYY"),
+        checked: false,
+        color: randomcolor(),
+        day: moment(day).format("d"),
+        projectName: todoProject,
+        time: moment(time).format("hh:mm A"),
+      });
+      setShowModal(false);
+      setText("");
+      setDay(new Date());
+      setTime(new Date());
+    }
+  };
   useEffect(() => {
     setTodoProject(selectedProject);
   }, [selectedProject]);
