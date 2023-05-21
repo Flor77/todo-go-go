@@ -55,7 +55,7 @@ function TodoForm({
           <p>Choose a project</p>
         </div>
         <div className="projects">
-          {projects.lenght > 0 ? (
+          {projects.length > 0 ? (
             projects.map((project) => (
               <div
                 className={`project ${
