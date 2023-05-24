@@ -5,15 +5,9 @@ import Project from "./Project";
 import { TodoContext } from "../context";
 
 function Projects() {
-  const [showMenu, setShowMenu] = useState(true);
+  // const [showMenu, setShowMenu] = useState(true);
   const [edit, setEdit] = useState(false);
   const pencilColor = edit ? "#1EC94C" : "#000000";
-
-  // const projects = [
-  //   { id: 1, name: "personal", numOfTodos: 0 },
-  //   { id: 2, name: "work", numOfTodos: 1 },
-  //   { id: 3, name: "other", numOfTodos: 2 },
-  // ];
 
   const { projects } = useContext(TodoContext);
 
@@ -25,7 +19,7 @@ function Projects() {
           <p>Projects</p>
         </div>
         <div className="btns">
-          {showMenu && projects.length > 0 && (
+          {projects.length > 0 && (
             <span className="edit" onClick={() => setEdit((edit) => !edit)}>
               <PencilFill size="15" color={pencilColor} />
             </span>

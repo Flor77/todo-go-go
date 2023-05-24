@@ -10,10 +10,11 @@ import { collection, addDoc } from "firebase/firestore";
 
 const AddNewTodo = () => {
   const { projects, selectedProject } = useContext(TodoContext);
+  const defaultDate = new Date();
 
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState("");
-  const [day, setDay] = useState();
+  const [day, setDay] = useState("");
   const [time, setTime] = useState();
   const [todoProject, setTodoProject] = useState(selectedProject);
 

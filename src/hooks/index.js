@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import moment from "moment";
-import {
-  query,
-  collection,
-  onSnapshot,
-  updateDoc,
-  doc,
-  addDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { query, collection, onSnapshot } from "firebase/firestore";
 
 export function useTodos() {
   const [todos, setTodos] = useState([]);
